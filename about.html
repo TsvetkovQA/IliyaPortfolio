@@ -43,20 +43,22 @@
             margin-top: 10px;
         }
         .button {
-            display: block;
-            width: 200px;
-            margin: 20px auto;
-            padding: 10px;
+            display: inline-block;
+            margin: 20px 10px;
+            padding: 10px 20px;
             font-size: 18px;
             background: #ffcc00;
             color: black;
             text-decoration: none;
-            text-align: center;
             border-radius: 5px;
             transition: background 0.3s ease;
         }
         .button:hover {
             background: #ffaa00;
+        }
+        .buttons {
+            text-align: center;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -81,8 +83,11 @@
         </div>
     </div>
 
-    <!-- Бутон "Моето хоби" -->
-    <a href="hobby.html" class="button">📸 Моето хоби</a>
+    <!-- Бутони за връщане -->
+    <div class="buttons">
+        <a href="index.html" class="button">⬅ Начало</a>
+        <a href="hobby.html" class="button">📸 Моето хоби</a>
+    </div>
 
 </body>
 </html>
