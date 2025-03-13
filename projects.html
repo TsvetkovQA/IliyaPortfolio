@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проекти - Илия Цветков</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://i.imgur.com/W5Q3VS3.jpeg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+        }
+        header {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            width: 60%;
+            margin: 50px auto;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .calculator {
+            width: 50%;
+            margin: 20px auto;
+            text-align: left;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        input, select {
+            width: 100%;
+            padding: 6px;
+            margin-top: 5px;
+            border: none;
+            border-radius: 5px;
+        }
+        button {
+            padding: 8px 15px;
+            font-size: 14px;
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .result {
+            margin-top: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+        }
+        footer {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Моите проекти</h1>
+        <nav>
+            <a href="index.html">Начало</a>
+            <a href="about.html">За мен</a>
+            <a href="contact.html">Контакти</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2>Проекти, по които работя</h2>
+
+        <button onclick="toggleCalculator('fitness')">Фитнес</button>
+        <button onclick="toggleCalculator('fuel')">Разход гориво</button>
+        <button onclick="toggleCalculator('currency')">Конвертор за валути</button>
+
+        <!-- Калориен калкулатор -->
+        <div class="calculator" id="fitness">
+            <h2>Калориен калкулатор</h2>
+            <label for="weight">Тегло (кг):</label>
+            <input type="number" id="weight" required>
+
+            <label for="height">Ръст (см):</label>
+            <input type="number" id="height" required>
+
+            <label for="age">Възраст:</label>
+            <input type="number" id="age" required>
+
+            <label for="activity">Ниво на активност:</label>
+            <select id="activity">
+                <option value="1.2">Заседнал начин на живот</option>
+                <option value="1.375">Лека активност</option>
+                <option value="1.55">Умерена активност</option>
+                <option value="1.725">Висока активност</option>
+                <option value="1.9">Спорт професионално</option>
+            </select>
+
+            <button onclick="calculateCalories()">Изчисли</button>
+            <p class="result" id="caloriesResult"></p>
+
+            <button onclick="toggleCalculator('weightCalculator')">Тегловен калкулатор</button>
+            <button onclick="window.location.href='diets.html'">Диети</button>
+
+            <!-- Тегловен калкулатор -->
+            <div class="calculator" id="weightCalculator">
+                <h2>Тегловен калкулатор</h2>
+                <label for="bmiWeight">Тегло (кг):</label>
+                <input type="number" id="bmiWeight" required>
+
+                <label for="bmiHeight">Ръст (см):</label>
+                <input type="number" id="bmiHeight" required>
+
+                <button onclick="calculateBMI()">Изчисли</button>
+                <p class="result" id="bmiResult"></p>
+            </div>
+        </div>
+
+        <!-- Калкулатор за разход на гориво -->
+        <div class="calculator" id="fuel">
+            <h2>Калкулатор за разход на гориво</h2>
+            <label for="distance">Разстояние (км):</label>
+            <input type="number" id="distance" step="0.01" required>
+
+            <label for="fuelConsumption">Среден разход (л/100 км):</label>
+            <input type="number" id="fuelConsumption" step="0.01" required>
+
+            <label for="fuelPrice">Цена на горивото (лв/л):</label>
+            <input type="number" id="fuelPrice" step="0.01" required>
+
+            <button onclick="calculateFuel()">Изчисли</button>
+            <p class="result" id="fuelResult"></p>
+        </div>
+
+        <!-- Конвертор за валути -->
+        <div class="calculator" id="currency">
+            <h2>Конвертор за валути</h2>
+            <label for="amount">Сума:</label>
+            <input type="number" id="amount" step="0.01" required>
+
+            <label for="fromCurrency">От валута:</label>
+            <select id="fromCurrency">
+                <option value="BGN">BGN (Български лев)</option>
+                <option value="USD">USD (Щатски долар)</option>
+                <option value="EUR">EUR (Евро)</option>
+                <option value="GBP">GBP (Британски паунд)</option>
+            </select>
+
+            <label for="toCurrency">Към валута:</label>
+            <select id="toCurrency">
+                <option value="BGN">BGN (Български лев)</option>
+                <option value="USD">USD (Щатски долар)</option>
+                <option value="EUR">EUR (Евро)</option>
+                <option value="GBP">GBP (Британски паунд)</option>
+            </select>
+
+            <button onclick="convertCurrency()">Конвертирай</button>
+            <p class="result" id="currencyResult"></p>
+        </div>
+    </div>
+
+    <script>
+        function toggleCalculator(id) {
+            let calculator = document.getElementById(id);
+            calculator.style.display = (calculator.style.display === "none" || calculator.style.display === "") ? "block" : "none";
+        }
+    </script>
+
+</body>
+</html>
