@@ -3,118 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Проекти - Илия Цветков</title>
+    <title>Калориен Калкулатор и Диети</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
+            font-family: 'Arial', sans-serif;
             background: url('https://i.imgur.com/W5Q3VS3.jpeg') no-repeat center center fixed;
             background-size: cover;
             color: white;
-        }
-        header {
-            background: rgba(0, 0, 0, 0.7);
-            padding: 15px;
+            margin: 0;
+            padding: 0;
             text-align: center;
+            overflow-x: hidden;
         }
-        nav a {
-            color: white;
-            margin: 0 15px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        .container {
-            width: 60%;
-            margin: 50px auto;
-            text-align: center;
-            background: rgba(0, 0, 0, 0.6);
+
+        .header {
+            background: rgba(0, 0, 0, 0.75);
             padding: 20px;
-            border-radius: 10px;
+            font-size: 28px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            width: 100%;
         }
-        .calculator {
-            width: 50%;
-            margin: 20px auto;
-            text-align: left;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 15px;
-            border-radius: 8px;
-            display: none;
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 12px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
         }
-        label {
+
+        .card {
+            width: 40%;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        h2 {
+            color: #ffcc00;
+        }
+
+        label, input, select, button {
             display: block;
+            margin: 10px auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 20px;
+            font-size: 18px;
+            background: linear-gradient(45deg, #ffcc00, #ffaa00);
+            color: black;
+            text-decoration: none;
+            border-radius: 6px;
             font-weight: bold;
-            margin-top: 10px;
-        }
-        input, select {
-            width: 100%;
-            padding: 6px;
-            margin-top: 5px;
-            border: none;
-            border-radius: 5px;
-        }
-        button {
-            padding: 8px 15px;
-            font-size: 14px;
-            background: #007bff;
-            color: white;
-            border: none;
+            transition: all 0.3s ease-in-out;
             cursor: pointer;
+            border: none;
             margin-top: 10px;
-            border-radius: 5px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
         }
-        button:hover {
-            background: #0056b3;
-        }
-        .result {
-            margin-top: 10px;
-            font-size: 16px;
-            font-weight: bold;
-            text-align: center;
-        }
-        footer {
-            background: rgba(0, 0, 0, 0.7);
-            padding: 10px;
-            text-align: center;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
+
+        .btn:hover {
+            background: linear-gradient(45deg, #ffaa00, #ff8800);
+            transform: scale(1.1);
+            box-shadow: 0px 7px 10px rgba(255, 170, 0, 0.5);
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Моите проекти</h1>
-        <nav>
-            <a href="index.html">Начало</a>
-            <a href="about.html">За мен</a>
-            <a href="contact.html">Контакти</a>
-        </nav>
-    </header>
+    <div class="header">Калориен Калкулатор и Диети</div>
 
     <div class="container">
-        <h2>Проекти, по които работя</h2>
-
-        <button onclick="toggleCalculator('fitness')">Фитнес</button>
-        <button onclick="toggleCalculator('fuel')">Разход гориво</button>
-        <button onclick="toggleCalculator('currency')">Конвертор за валути</button>
-
-        <!-- Калориен калкулатор -->
-        <div class="calculator" id="fitness">
-            <h2>Калориен калкулатор</h2>
-            <label for="weight">Тегло (кг):</label>
-            <input type="number" id="weight" required>
-
-            <label for="height">Ръст (см):</label>
-            <input type="number" id="height" required>
-
-            <label for="age">Възраст:</label>
-            <input type="number" id="age" required>
-
+        <div class="card">
+            <h2>Калориен Калкулатор</h2>
+            <label>Тегло (кг): <input type="number" id="weight"></label>
+            <label>Ръст (см): <input type="number" id="height"></label>
+            <label>Възраст: <input type="number" id="age"></label>
             <label for="activity">Ниво на активност:</label>
             <select id="activity">
                 <option value="1.2">Заседнал начин на живот</option>
@@ -123,74 +102,51 @@
                 <option value="1.725">Висока активност</option>
                 <option value="1.9">Спорт професионално</option>
             </select>
-
-            <button onclick="calculateCalories()">Изчисли</button>
-            <p class="result" id="caloriesResult"></p>
-
-            <button onclick="toggleCalculator('weightCalculator')">Тегловен калкулатор</button>
-            <button onclick="window.location.href='diets.html'">Диети</button>
-
-            <!-- Тегловен калкулатор -->
-            <div class="calculator" id="weightCalculator">
-                <h2>Тегловен калкулатор</h2>
-                <label for="bmiWeight">Тегло (кг):</label>
-                <input type="number" id="bmiWeight" required>
-
-                <label for="bmiHeight">Ръст (см):</label>
-                <input type="number" id="bmiHeight" required>
-
-                <button onclick="calculateBMI()">Изчисли</button>
-                <p class="result" id="bmiResult"></p>
-            </div>
+            <button class="btn" onclick="calculateCalories()">Изчисли</button>
+            <p id="caloriesResult"></p>
+            <p id="bmiResult"></p>
+            <p id="dietAdvice"></p>
         </div>
-
-        <!-- Калкулатор за разход на гориво -->
-        <div class="calculator" id="fuel">
-            <h2>Калкулатор за разход на гориво</h2>
-            <label for="distance">Разстояние (км):</label>
-            <input type="number" id="distance" step="0.01" required>
-
-            <label for="fuelConsumption">Среден разход (л/100 км):</label>
-            <input type="number" id="fuelConsumption" step="0.01" required>
-
-            <label for="fuelPrice">Цена на горивото (лв/л):</label>
-            <input type="number" id="fuelPrice" step="0.01" required>
-
-            <button onclick="calculateFuel()">Изчисли</button>
-            <p class="result" id="fuelResult"></p>
-        </div>
-
-        <!-- Конвертор за валути -->
-        <div class="calculator" id="currency">
-            <h2>Конвертор за валути</h2>
-            <label for="amount">Сума:</label>
-            <input type="number" id="amount" step="0.01" required>
-
-            <label for="fromCurrency">От валута:</label>
-            <select id="fromCurrency">
-                <option value="BGN">BGN (Български лев)</option>
-                <option value="USD">USD (Щатски долар)</option>
-                <option value="EUR">EUR (Евро)</option>
-                <option value="GBP">GBP (Британски паунд)</option>
-            </select>
-
-            <label for="toCurrency">Към валута:</label>
-            <select id="toCurrency">
-                <option value="BGN">BGN (Български лев)</option>
-                <option value="USD">USD (Щатски долар)</option>
-                <option value="EUR">EUR (Евро)</option>
-                <option value="GBP">GBP (Британски паунд)</option>
-            </select>
-
-            <button onclick="convertCurrency()">Конвертирай</button>
-            <p class="result" id="currencyResult"></p>
+        
+        <div class="card">
+            <h2>Диети</h2>
+            <button class="btn" onclick="window.location.href='diets.html'">Преглед на диетите</button>
         </div>
     </div>
 
+    <button class="btn" onclick="window.location.href='index.html'">Назад към началната страница</button>
+
     <script>
-        function toggleCalculator(id) {
-            let calculator = document.getElementById(id);
-            calculator.style.display = (calculator.style.display === "none" || calculator.style.display === "") ? "block" : "none";
+        function calculateCalories() {
+            let weight = parseFloat(document.getElementById("weight").value);
+            let height = parseFloat(document.getElementById("height").value);
+            let age = parseFloat(document.getElementById("age").value);
+            let activity = parseFloat(document.getElementById("activity").value);
+            
+            if (!weight || !height || !age) {
+                document.getElementById("caloriesResult").innerText = "Моля, попълнете всички полета.";
+                return;
+            }
+            
+            let bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+            let dailyCalories = bmr * activity;
+            let bmi = weight / ((height / 100) * (height / 100));
+            
+            document.getElementById("caloriesResult").innerText = "Вашият препоръчителен дневен прием на калории е: " + dailyCalories.toFixed(2) + " kcal.";
+            document.getElementById("bmiResult").innerText = "Вашият BMI е: " + bmi.toFixed(2);
+            
+            let advice = "";
+            if (bmi < 18.5) {
+                advice = "Вие сте под нормата. Препоръчва се хранителен режим за покачване на килограми.";
+            } else if (bmi >= 18.5 && bmi < 25) {
+                advice = "Вашият BMI е в нормалните граници. Препоръчва се балансирана диета за поддържане.";
+            } else if (bmi >= 25 && bmi < 30) {
+                advice = "Имате наднормено тегло. Препоръчва се хранителен режим за намаляване на мазнините.";
+            } else {
+                advice = "Имате затлъстяване. Консултирайте се с диетолог за персонализиран хранителен режим.";
+            }
+            
+            document.getElementById("dietAdvice").innerText = advice;
         }
     </script>
 
