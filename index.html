@@ -3,115 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Портфолио - Илия Цветков</title>
-
-    <!-- SEO и Open Graph мета тагове -->
-    <meta name="description" content="Добре дошли в моето портфолио! Разгледайте моите проекти и свържете се с мен.">
-    <meta name="keywords" content="портфолио, уеб разработка, програмиране, Илия Цветков">
-    <meta name="author" content="Илия Цветков">
-
-    <!-- Open Graph тагове за Facebook -->
-    <meta property="og:title" content="Портфолио - Илия Цветков">
-    <meta property="og:description" content="Добре дошли в моето портфолио! Вижте моите проекти и контакти.">
-    <meta property="og:image" content="https://i.imgur.com/L6OYwAe.jpeg">
-    <meta property="og:url" content="https://tsvetkovqa.github.io/IliyaPortfolio/">
-    <meta property="og:type" content="website">
-
-    <!-- Twitter мета тагове -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Портфолио - Илия Цветков">
-    <meta name="twitter:description" content="Разгледайте моите проекти и свържете се с мен.">
-    <meta name="twitter:image" content="https://i.imgur.com/L6OYwAe.jpeg">
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-
+    <title>Илия Цветков - Лично Портфолио</title>
     <style>
+        /* Основни стилове */
         body {
-            font-family: 'Poppins', sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 0;
+            font-family: 'Arial', sans-serif;
             background: url('https://i.imgur.com/L6OYwAe.jpeg') no-repeat center center fixed;
             background-size: cover;
             color: white;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            overflow-x: hidden;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
             align-items: center;
-            height: 100vh;
+            justify-content: flex-start;
+            min-height: 100vh;
         }
-        .container {
-            margin-top: 80px;
+
+        /* Контейнер за картите */
+        .cards-container {
             display: flex;
             justify-content: center;
-            gap: 20px;
             flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 80px; /* Повдигаме картите нагоре */
+            padding: 40px 10px;
+            max-width: 1000px;
         }
+
+        /* Стил на картите */
         .card {
-            width: 280px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
+            width: 180px; /* Намалена ширина */
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
             text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
         }
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0px 10px 20px rgba(255, 255, 255, 0.3);
-        }
-        .card h3 {
-            margin: 10px 0;
-            font-size: 22px;
-            color: #ffcc00;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-        .card p {
-            font-size: 16px;
-            color: #add8e6;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-        }
-        footer {
-            background: rgba(0, 0, 0, 0.7);
-            padding: 10px;
-            text-align: center;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
-            font-size: 14px;
-        }
-        a {
+
+        /* Прави цялата карта кликаема */
+        .card a {
+            display: block;
             text-decoration: none;
             color: white;
+            width: 100%;
+            height: 100%;
+            padding: 15px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2;
+        }
+
+        .card:hover {
+            transform: translateY(-7px);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0px 7px 20px rgba(255, 255, 255, 0.4);
+        }
+
+        .card h2 {
+            color: #ffcc00;
+            font-size: 18px;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 3;
+        }
+
+        .card p {
+            font-size: 14px;
+            opacity: 0.8;
+            position: relative;
+            z-index: 3;
+        }
+
+        /* Анимации */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Оптимизация за мобилни устройства */
+        @media (max-width: 768px) {
+            .cards-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .card {
+                width: 85%;
+            }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <a href="about.html">
-            <div class="card">
-                <h3>За мен</h3>
-                <p>Научи повече за мен, моите умения и интереси.</p>
-            </div>
-        </a>
-        <a href="projects.html">
-            <div class="card">
-                <h3>Проекти</h3>
-                <p>Разгледай моите проекти и завършени разработки.</p>
-            </div>
-        </a>
-        <a href="contact.html">
-            <div class="card">
-                <h3>Контакти</h3>
-                <p>Свържи се с мен за повече информация.</p>
-            </div>
-        </a>
-    </div>
+    <!-- Карти за навигация -->
+    <div class="cards-container">
+        <div class="card">
+            <a href="about.html"></a>
+            <h2>👨‍💻 За мен</h2>
+            <p>Научи повече за мен, моите умения и интереси.</p>
+        </div>
 
-    <footer>
-        <p>&copy; 2025 Илия Цветков</p>
-    </footer>
+        <div class="card">
+            <a href="projects.html"></a>
+            <h2>💡 Проекти</h2>
+            <p>Разгледай моите проекти и завършени разработки.</p>
+        </div>
+
+        <div class="card">
+            <a href="contact.html"></a>
+            <h2>📩 Контакти</h2>
+            <p>Свържи се с мен за повече информация.</p>
+        </div>
+
+        <div class="card">
+            <a href="blog.html"></a>
+            <h2>✍ Блог</h2>
+            <p>Чети моите статии и споделени знания.</p>
+        </div>
+    </div>
 
 </body>
 </html>
